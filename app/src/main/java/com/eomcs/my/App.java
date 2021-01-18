@@ -77,7 +77,7 @@ public class App {
             response[size] = Integer.valueOf(keyboardScan.nextLine());
 
             while(true) {
-              if(response[size] > 0 && response[size] < 7) {
+              if(response[size] > 0 && response[size] < 8) {
                 break;
               }else {
                 System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
