@@ -4,49 +4,58 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class App {
-
   public static void main(String[] args) {
     Scanner keyboardScan = new Scanner(System.in);
 
-
     final int LENGTH = 100;
+    int count = 0;
+    int userChoice = 0;
     int[] nos = new int[LENGTH];
+    int[] status = new int[LENGTH];
+    double[] heights = new double[LENGTH];
+    double[] weights = new double[LENGTH];
+    double[] bmis = new double[LENGTH];
     String[] names = new String[LENGTH];
-    int[] ages = new int[LENGTH];
-    String[] sexs = new String[LENGTH];
-    String[] tels = new String[LENGTH];
-    int[] response = new int[LENGTH];
+    Date[] registeredDate = new Date[LENGTH];
 
     int size = 0;
 
 
-    final int TLENGTH = 100;
-    String[] thospitals = new String[TLENGTH];
-    int[] tuserChoice= new int[TLENGTH];
-    int[] tstatus = new int[TLENGTH];
+    final int RLENGTH = 100;
+    final int EXCOUNT = 3;
+    int rcount = 0;
+    int ruserChoice = 0;
+    int[] rnos = new int[RLENGTH];
+    int[] rexsCounts = new int[RLENGTH];
+    int[] rexsSets = new int[RLENGTH];
+    String[] rnames = new String[RLENGTH];
+    String[] rexAreas = new String[RLENGTH];
+    String[] rexs = new String[RLENGTH];
+    Date[] rregisteredDate = new Date[LENGTH];
 
-    int tsize = 0;
+    int rsize = 0;
 
-    final int ALENGTH = 100;
-    int[] auserChoice = new int[ALENGTH];
-    String[] acountry = new String[ALENGTH];
-    Date[] astartDate = new Date[ALENGTH];
-    Date[] aendDate = new Date[ALENGTH];
-    String astrs = null;
+    final int ELENGTH = 2;
+    int[] enos = new int[ELENGTH];
+    int ecount = 0;
+    String[] emenus = new String[ELENGTH];
+    Date[] eregisteredDate = new Date[LENGTH];
 
-    int asize = 0;
+    int esize = 0;
 
 
-    loop:
-      while (true) {
+    loop: while (true) {
 
-        System.out.print("명령> ");
-        String command = keyboardScan.nextLine();
-        System.out.println();
+      System.out.print("명령 > ");
+      String command = keyboardScan.nextLine();
+      System.out.println();
 
-        switch (command) {
-          case "/person/add":
-            System.out.println("[인적사항 등록]");
+      switch (command) {
+
+        case "/신체정보 등록":
+
+          for (size = 0; size < LENGTH; size++) {
+            System.out.println("[신체정보 등록]");
 
             System.out.print("번호? ");
             nos[size] = Integer.parseInt(keyboardScan.nextLine());
@@ -54,200 +63,159 @@ public class App {
             System.out.print("이름? ");
             names[size] = keyboardScan.nextLine();
 
-            System.out.print("나이? ");
-            ages[size] = Integer.valueOf(keyboardScan.nextLine());
+            System.out.print("키? ");
+            heights[size] = Double.parseDouble(keyboardScan.nextLine());
 
-            System.out.print("성별? ");
-            sexs[size] = keyboardScan.nextLine();
+            System.out.print("몸무게? ");
+            weights[size] = Double.parseDouble(keyboardScan.nextLine());
 
-            System.out.println("거주지역: ");
-            System.out.println("1. 서울 / 경기");
-            System.out.println("2. 강원도");
-            System.out.println("3. 경상도");
-            System.out.println("4. 전라도");
-            System.out.println("5. 충청도");
-            System.out.println("6. 제주도");
-            System.out.println("7. 그 외");
+            System.out.print("계속 입력하시겠습니까?(y/N) ");
+            String str = keyboardScan.nextLine();
+            if (!str.equalsIgnoreCase("y")) {
+              break;
+            }
+            count++;
+            System.out.println();
+
+            if (count == LENGTH) {
+              System.out.println("저장할 수 있는 신체정보가 꽉 찼습니다.");
+              System.out.println();
+              break;
+            }
+          }
+
+
+          System.out.println();
+
+          size++;
+          break;
+
+
+        case "/신체정보 조회":
+
+          System.out.println("[신체정보 조회]");
+
+          for (int i = 0; i < size; i++) {
+            System.out.printf("%d.이름 : %s\n  %.2fcm  %.2fkg\n", nos[i], names[i], heights[i],
+                weights[i]);
+          }
+
+          System.out.println();
+
+          break;
+
+
+        case "/운동기록 등록":
+          System.out.println("[운동기록 등록]");
+
+          System.out.print("번호: ");
+          rnos[rsize] = Integer.parseInt(keyboardScan.nextLine());
+
+          System.out.print("운동 부위: ");
+          rexAreas[rsize] = keyboardScan.nextLine();
+
+
+          for (int i = 0; i < EXCOUNT; i++) {
+
+            System.out.printf("운동 이름: (%d개까지 입력 가능)", EXCOUNT);
+            System.out.println();
             System.out.print("> ");
+            rexs[i] = keyboardScan.nextLine();
+            System.out.print("횟수: ");
+            rexsCounts[i] = Integer.parseInt(keyboardScan.nextLine());
+            System.out.print("세트: ");
+            rexsSets[i] = Integer.parseInt(keyboardScan.nextLine());
+            System.out.println();
 
-            response[size] = Integer.valueOf(keyboardScan.nextLine());
+            System.out.print("계속 입력하시겠습니까?(y/N) ");
+            String rstr = keyboardScan.nextLine();
+            System.out.println();
+            if (!rstr.equalsIgnoreCase("y")) {
+              break;
+            }
+            rcount++;
 
-            while(true) {
-              if(response[size] > 0 && response[size] < 8) {
-                break;
-              }else {
-                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
-                System.out.print("> ");
-                response[size] = Integer.valueOf(keyboardScan.nextLine());
-
-              }
+            if (rcount == EXCOUNT) {
+              System.out.println("저장할 수 있는 운동기록이 꽉 찼습니다.");
+              System.out.println();
+              break;
             }
 
-            System.out.print("전화? ");
-            tels[size] = keyboardScan.nextLine();
+          }
 
+          rsize++;
+          break;
 
-            size++;
-            break;
+        case "/운동기록 조회":
 
-          case "/test/add":
-            System.out.println("[검사상태 등록]");
+          System.out.println("[운동기록 조회]");
 
-            for (int i = 0; i < size; i++) {
-              System.out.printf("%d. %s\n", nos[i], names[i]);
-            }
-            System.out.println("등록할 이름을 고르세요.");
-            System.out.print("> ");
-            tuserChoice[size] = Integer.valueOf(keyboardScan.nextLine());
-
-            while(true) {
-              if(tuserChoice[size] > 0 && tuserChoice[size] <= size) {
-                System.out.print("검사받은 병원명: ");
-                thospitals[tsize] = keyboardScan.nextLine();
-
-                System.out.println("검사결과: ");
-                System.out.println("0: 음성");
-                System.out.println("1: 진행중");
-                System.out.println("2: 양성");
-                System.out.print("> ");
-                tstatus[tsize] = Integer.valueOf(keyboardScan.nextLine());
-
-                while(true) {
-                  if(tstatus[tsize] >= 0 && tstatus[tsize] < 3) {
-                    break;
-                  }else {
-                    System.out.println("잘못 입력하셨습니다. 다시 입력해주세요: ");
-                    System.out.print("> ");
-                    tstatus[tsize] = Integer.valueOf(keyboardScan.nextLine());
-                  }
-                }
-                break;
-              }else {
-                System.out.println("잘못 입력하셨습니다. 숫자를 입력해주세요:");
-                System.out.print("> ");
-                tuserChoice[size] = Integer.valueOf(keyboardScan.nextLine());
-              }
+          for (int i = 0; i < rsize; i++) {
+            System.out.printf("%d. %s\n", rnos[i], rexAreas[i]);
+            for (int j = 0; j <= rcount; j++) {
+              System.out.printf("운동 : %s 횟수: %d 세트: %d\n", rexs[j], rexsCounts[j], rexsSets[j]);
             }
 
-            tsize++;
-            break;
+          }
 
-          case "/ask/add":
-            System.out.println("[질문사항 등록]");
-            for (int i = 0; i < size; i++) {
-              System.out.printf("%d. %s\n", nos[i], names[i]);
+
+          System.out.println();
+          break;
+
+
+        case "/식단 등록":
+
+          for (esize = 0; esize < ELENGTH; esize++) {
+            System.out.println("[식단 등록]");
+
+            System.out.print("번호: ");
+            enos[size] = Integer.parseInt(keyboardScan.nextLine());
+
+            System.out.print("음식: ");
+            emenus[size] = keyboardScan.nextLine();
+
+            System.out.print("계속 입력하시겠습니까?(y/N) ");
+            String estr = keyboardScan.nextLine();
+            if (!estr.equalsIgnoreCase("y")) {
+              break;
             }
-            System.out.println("등록할 이름을 고르세요.");
-            System.out.print("> ");
-            auserChoice[size] = Integer.valueOf(keyboardScan.nextLine());
+            ecount++;
 
-            while(true) {
-              if(auserChoice[size] > 0 && auserChoice[size] <= size) {
-                System.out.print("2주 이내에 해외방문한 이력이 있습니까?(y/N) ");
-                astrs = keyboardScan.nextLine();
-                if(astrs.equalsIgnoreCase("y")) {
-                  System.out.print("방문한 나라: ");
-                  acountry[asize] = keyboardScan.nextLine();
-
-                  System.out.print("출국일자: ");
-                  astartDate[asize] = Date.valueOf(keyboardScan.nextLine());
-
-                  System.out.print("귀국일자: ");
-                  aendDate[asize] = Date.valueOf(keyboardScan.nextLine());
-
-                  break;
-
-                }else {
-                  break;
-                }
-              }
+            if (ecount == ELENGTH) {
+              System.out.println("더이상 드시면 안됩니다.");
+              System.out.println();
+              break;
             }
+          }
 
-            asize++;
-            break;
+          System.out.println();
 
+          esize++;
+          break;
 
+        case "/식단 조회":
+          System.out.println("[식단 조회]");
 
-          case "/total/list":
+          for (int i = 0; i < esize; i++) {
+            System.out.printf("%d. %s\n", enos[i], emenus[i]);
+          }
 
-            for (int i = 0; i < size; i++) {
-              System.out.printf("%d. %s\n", nos[i], names[i]);
-            }
-            System.out.println("조회할 이름을 고르세요.");
-            System.out.print("> ");
-            tuserChoice[size] = Integer.valueOf(keyboardScan.nextLine()) - 1;
+          System.out.println();
+          break;
 
-            for(int i = 0; i < size; i++) {
-              String regidence = null;
-              switch(response[i]) {
-                case 1 :
-                  regidence = "서울 / 경기";
-                  break;
-                case 2 :
-                  regidence = "강원도";
-                  break;
-                case 3:
-                  regidence = "경상도";
-                  break;
-                case 4:
-                  regidence = "전라도";
-                  break;
-                case 5:
-                  regidence = "충청도";
-                  break;
-                case 6:
-                  regidence = "제주도";
-                  break;
-                default:
-                  regidence = "그 외";
-              }
+        case "quit":
+        case "exit":
+          System.out.println("안녕!");
+          break loop;
 
-              String stateLabel = null;
-              switch (tstatus[i]) {
-                case 1:
-                  stateLabel = "진행중";
-                  break;
-                case 2:
-                  stateLabel = "양성";
-                  break;
-                default:
-                  stateLabel = "음성";
-              }
+        default:
+          System.out.println("실행할 수 없는 명령입니다.");
 
-
-
-              if(tstatus[i] >= 0 && tstatus[i] < 3) {
-                System.out.printf("이름: %s 나이: %d\n", names[i], ages[i]);
-                System.out.printf("성별: %s 거주지역: %s\n", sexs[i], regidence);
-                System.out.printf("번호: %s\n ", tels[i]);
-                System.out.printf("검사받은 병원: %s 검사결과: %s\n", thospitals[i], stateLabel);
-                System.out.println();
-                System.out.printf("최근 2주이내 해외출국 이력: %s\n", astrs);
-                if(astrs.equalsIgnoreCase("n")) {
-                  System.out.println("없음");
-                }else if(astrs.equalsIgnoreCase("y")) {
-                  System.out.println("방문한 나라: " + acountry[i]);
-                  System.out.println("출국일: " + astartDate[i]);
-                  System.out.println("귀국일: " + aendDate[i]);
-                }
-                System.out.println();              
-              }
-            }
-            break;
-
-
-          case "quit":
-          case "exit":
-            System.out.println("안녕!");
-            break loop;
-          default:
-            System.out.println("실행할 수 없는 명령입니다.");
-        }
-        System.out.println();
       }
+    }
 
     keyboardScan.close();
+
   }
 }
-
 
