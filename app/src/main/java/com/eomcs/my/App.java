@@ -236,25 +236,8 @@ public class App {
                 }
                 System.out.println();              
 
-              }else {
-                System.out.printf("이름: %s 나이: %d\n", names[i], ages[i]);
-                System.out.printf("성별: %s 거주지역: %s\n", sexs[i], regidence);
-                System.out.printf("번호: %s\n ", tels[i]);
-                System.out.println();
-                System.out.printf("최근 2주이내 해외출국 이력: %s\n", astrs);
-                if(astrs.equalsIgnoreCase("n")) {
-                  System.out.println("없음");
-                }else if(astrs.equalsIgnoreCase("y")) {
-                  System.out.println("방문한 나라: " + acountry[i]);
-                  System.out.println("출국일: " + astartDate[i]);
-                  System.out.println("귀국일: " + aendDate[i]);
-                }
-                System.out.println();              
               }
-
               break;
-            }
-            break;
 
           case "quit":
           case "exit":
@@ -267,7 +250,7 @@ public class App {
       }
 
     keyboardScan.close();
-  }
+
 
 
 
