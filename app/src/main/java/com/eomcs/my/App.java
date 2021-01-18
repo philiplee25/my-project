@@ -39,6 +39,7 @@ public class App {
 
     loop:
       while (true) {
+
         System.out.print("명령> ");
         String command = keyboardScan.nextLine();
         System.out.println();
@@ -232,6 +233,7 @@ public class App {
                 System.out.println();              
               }
             }
+            break;
 
 
           case "quit":
