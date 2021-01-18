@@ -4,44 +4,50 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class App {
+
+  static Scanner keyboardScan = new Scanner(System.in);
+
+  static final int LENGTH = 100;
+  static int count = 0;
+  static int userChoice = 0;
+  static int[] nos = new int[LENGTH];
+  static int[] status = new int[LENGTH];
+  static double[] heights = new double[LENGTH];
+  static double[] weights = new double[LENGTH];
+  static double[] bmis = new double[LENGTH];
+  static String[] names = new String[LENGTH];
+
+
+  static int size = 0;
+
+
+
+  static final int RLENGTH = 100;
+  static final int EXCOUNT = 3;
+  static int rcount = 0;
+  static int ruserChoice = 0;
+  static int[] rnos = new int[RLENGTH];
+  static int[] rexsCounts = new int[RLENGTH];
+  static int[] rexsSets = new int[RLENGTH];
+  static String[] rnames = new String[RLENGTH];
+  static String[] rexAreas = new String[RLENGTH];
+  static String[] rexs = new String[RLENGTH];
+  static Date[] rregisteredDate = new Date[LENGTH];
+
+  static int rsize = 0;
+
+
+  static final int ELENGTH = 2;
+  static int[] enos = new int[ELENGTH];
+  static int ecount = 0;
+  static String[] emenus = new String[ELENGTH];
+  static Date[] eregisteredDate = new Date[LENGTH];
+
+  static int esize = 0;
+
+
   public static void main(String[] args) {
-    Scanner keyboardScan = new Scanner(System.in);
 
-    final int LENGTH = 100;
-    int count = 0;
-    int userChoice = 0;
-    int[] nos = new int[LENGTH];
-    int[] status = new int[LENGTH];
-    double[] heights = new double[LENGTH];
-    double[] weights = new double[LENGTH];
-    double[] bmis = new double[LENGTH];
-    String[] names = new String[LENGTH];
-    Date[] registeredDate = new Date[LENGTH];
-
-    int size = 0;
-
-
-    final int RLENGTH = 100;
-    final int EXCOUNT = 3;
-    int rcount = 0;
-    int ruserChoice = 0;
-    int[] rnos = new int[RLENGTH];
-    int[] rexsCounts = new int[RLENGTH];
-    int[] rexsSets = new int[RLENGTH];
-    String[] rnames = new String[RLENGTH];
-    String[] rexAreas = new String[RLENGTH];
-    String[] rexs = new String[RLENGTH];
-    Date[] rregisteredDate = new Date[LENGTH];
-
-    int rsize = 0;
-
-    final int ELENGTH = 2;
-    int[] enos = new int[ELENGTH];
-    int ecount = 0;
-    String[] emenus = new String[ELENGTH];
-    Date[] eregisteredDate = new Date[LENGTH];
-
-    int esize = 0;
 
 
     loop: while (true) {
