@@ -39,11 +39,6 @@ public class App {
 
     loop:
       while (true) {
-        System.out.println("/person/add");
-        System.out.println("/test/add");
-        System.out.println("/ask/add");
-        System.out.println("/total/list");
-        System.out.println();
         System.out.print("명령> ");
         String command = keyboardScan.nextLine();
         System.out.println();
@@ -59,7 +54,7 @@ public class App {
             names[size] = keyboardScan.nextLine();
 
             System.out.print("나이? ");
-            ages[size] = Integer.parseInt(keyboardScan.nextLine());
+            ages[size] = Integer.valueOf(keyboardScan.nextLine());
 
             System.out.print("성별? ");
             sexs[size] = keyboardScan.nextLine();
@@ -235,9 +230,9 @@ public class App {
                   System.out.println("귀국일: " + aendDate[i]);
                 }
                 System.out.println();              
-
               }
-              break;
+            }
+
 
           case "quit":
           case "exit":
@@ -250,8 +245,7 @@ public class App {
       }
 
     keyboardScan.close();
-
-
-
-
+  }
 }
+
+
