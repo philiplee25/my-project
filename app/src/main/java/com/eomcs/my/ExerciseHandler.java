@@ -41,6 +41,7 @@ public class ExerciseHandler {
       String rstr = Prompt.String("계속 입력하시겠습니까?(y/N) ");
       System.out.println();
       if (!rstr.equalsIgnoreCase("y")) {
+        System.out.println();
         break;
       }
       rcount++;

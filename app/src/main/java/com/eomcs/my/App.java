@@ -7,7 +7,6 @@ public class App {
     loop: while (true) {
 
       String command = Prompt.String("명령> ");
-      System.out.println();
 
       switch (command) {
 

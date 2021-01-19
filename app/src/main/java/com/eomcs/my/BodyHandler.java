@@ -1,5 +1,7 @@
 package com.eomcs.my;
 
+import java.sql.Date;
+
 public class BodyHandler {
   static final int LENGTH = 100;
   static int count = 0;
@@ -10,6 +12,7 @@ public class BodyHandler {
   static double[] weights = new double[LENGTH];
   static double[] bmis = new double[LENGTH];
   static String[] names = new String[LENGTH];
+  static Date[] registeredDates = new java.sql.Date[LENGTH];
 
   static int size = 0;
 
@@ -20,7 +23,6 @@ public class BodyHandler {
 
       System.out.println("[신체정보 등록]");
 
-      System.out.print("번호? ");
       nos[size] = Prompt.Int("번호? ");
 
       names[size] = Prompt.String("이름? ");
@@ -28,6 +30,8 @@ public class BodyHandler {
       heights[size] = Prompt.Double("키? ");
 
       weights[size] = Prompt.Double("몸무게? ");
+
+      registeredDates[size] = new java.sql.Date(System.currentTimeMillis());
 
       String str = Prompt.String("계속 입력하시겠습니까?(y/N) ");
       if (!str.equalsIgnoreCase("y")) {

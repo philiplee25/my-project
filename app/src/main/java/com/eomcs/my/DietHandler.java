@@ -23,8 +23,10 @@ public class DietHandler {
 
       String estr = Prompt.String("계속 입력하시겠습니까?(y/N) ");
       if (!estr.equalsIgnoreCase("y")) {
+        System.out.println();
         break;
       }
+      System.out.println();
       ecount++;
 
       if (ecount == ELENGTH) {
