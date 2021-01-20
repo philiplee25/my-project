@@ -1,4 +1,9 @@
-package com.eomcs.my;
+package com.eomcs.project;
+
+import com.eomcs.Utility.Prompt;
+import com.eomcs.project.Handler.BodyHandler;
+import com.eomcs.project.Handler.DietHandler;
+import com.eomcs.project.Handler.ExerciseHandler;
 
 public class App {
 

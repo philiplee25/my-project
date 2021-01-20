@@ -1,6 +1,7 @@
-package com.eomcs.my;
+package com.eomcs.project.Handler;
 
 import java.sql.Date;
+import com.eomcs.Utility.Prompt;
 
 public class DietHandler {
   static final int ELENGTH = 2;
@@ -12,7 +13,7 @@ public class DietHandler {
   static int esize = 0;
 
 
-  static void addDiet() {
+  public static void addDiet() {
 
     for (esize = 0; esize < ELENGTH; esize++) {
       System.out.println("[식단 등록]");
@@ -39,7 +40,7 @@ public class DietHandler {
     esize++;
   }
 
-  static void listDiet() {
+  public static void listDiet() {
 
     System.out.println("[식단 조회]");
 
