@@ -1,9 +1,9 @@
 package com.eomcs.project;
 
-import com.eomcs.Utility.Prompt;
-import com.eomcs.project.Handler.BodyHandler;
-import com.eomcs.project.Handler.DietHandler;
-import com.eomcs.project.Handler.ExerciseHandler;
+import com.eomcs.project.handler.BodyHandler;
+import com.eomcs.project.handler.DietHandler;
+import com.eomcs.project.handler.ExerciseHandler;
+import com.eomcs.utility.Prompt;
 
 public class App {
 
@@ -16,27 +16,27 @@ public class App {
       switch (command) {
 
         case "/신체정보 등록":
-          BodyHandler.addBody();
+          BodyHandler.add();
           break;
 
         case "/신체정보 조회":
-          BodyHandler.listBody();
+          BodyHandler.list();
           break;
 
         case "/운동기록 등록":
-          ExerciseHandler.addExercise();
+          ExerciseHandler.add();
           break;
 
         case "/운동기록 조회":
-          ExerciseHandler.listExercise();
+          ExerciseHandler.list();
           break;
 
         case "/식단 등록":
-          DietHandler.addDiet();
+          DietHandler.add();
           break;
 
         case "/식단 조회":
-          DietHandler.listDiet();
+          DietHandler.list();
           break;
 
         case "quit":

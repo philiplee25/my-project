@@ -1,18 +1,9 @@
-package com.eomcs.project.Handler;
+package com.eomcs.project.handler;
 
-import java.sql.Date;
-import com.eomcs.Utility.Prompt;
+import com.eomcs.project.domain.Body;
+import com.eomcs.utility.Prompt;
 
 public class BodyHandler {
-
-  static class Body {
-    int nos;
-    int status;
-    double heights;
-    double weights;
-    String names;
-    Date registeredDates;
-  }
 
   static final int LENGTH = 100;
   static Body[] bodys = new Body[LENGTH];
@@ -20,7 +11,7 @@ public class BodyHandler {
   static int count = 0;
 
 
-  public static void addBody() {
+  public static void add() {
 
     System.out.println("[신체정보 등록]");
 
@@ -60,13 +51,14 @@ public class BodyHandler {
   }
 
 
-  public static void listBody() {
+  public static void list() {
 
     System.out.println("[신체정보 조회]");
 
     for (int i = 0; i < size; i++) {
-      System.out.printf("%d.이름 : %s\n  %.2fcm  %.2fkg\n", bodys[i].nos, bodys[i].names,
-          bodys[i].heights, bodys[i].weights);
+      Body b = bodys[i];
+      System.out.printf("%d.이름 : %s\n  %.2fcm  %.2fkg\n  %s\n", b.nos, b.names,
+          b.heights, b.weights, b.registeredDates);
     }
     System.out.println();
   }
