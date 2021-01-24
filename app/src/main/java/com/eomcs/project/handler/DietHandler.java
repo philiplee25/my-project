@@ -60,14 +60,14 @@ public class DietHandler {
       switch(d.status) {
         case 0:
           stateLabel = "아침";
-
+          break;
         case 1:
           stateLabel = "점심";
-
+          break;
         case 2:
           stateLabel = "저녁";
-
-        case 3:
+          break;
+        default:
           stateLabel = "간식";
       }
       System.out.printf("%s\n%d. %s\n",d.registerDate, d.no, stateLabel);

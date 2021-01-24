@@ -33,6 +33,7 @@ public class BodyHandler {
 
         String str = Prompt.String("계속 입력하시겠습니까?(y/N) ");
         if (!str.equalsIgnoreCase("y")) {
+          System.out.println();
           break;
         }
         count++;
