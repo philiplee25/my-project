@@ -70,7 +70,7 @@ public class DietHandler {
         default:
           stateLabel = "간식";
       }
-      System.out.printf("%s\n%d. %s\n",d.registerDate, d.no, stateLabel);
+      System.out.printf("[%s]\n%d. %s\n",d.registerDate, d.no, stateLabel);
       System.out.printf("식단: %s\n", d.name);
     }
 

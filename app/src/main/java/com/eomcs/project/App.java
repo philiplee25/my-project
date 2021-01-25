@@ -10,12 +10,18 @@ public class App {
   public static void main(String[] args) {
 
     loop: while (true) {
+      System.out.println("/신체정보 추가");
+      System.out.println("/신체정보 조회");
+      System.out.println("/운동기록 추가");
+      System.out.println("/운동기록 조회");
+      System.out.println("/식단 등록");
+      System.out.println("/식단 조회");
 
       String command = Prompt.String("명령> ");
 
       switch (command) {
 
-        case "/신체정보 등록":
+        case "/신체정보 추가":
           BodyHandler.add();
           break;
 
@@ -23,7 +29,7 @@ public class App {
           BodyHandler.list();
           break;
 
-        case "/운동기록 등록":
+        case "/운동기록 추가":
           ExerciseHandler.add();
           break;
 
