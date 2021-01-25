@@ -31,8 +31,9 @@ public class BodyHandler {
 
         bodys[size++] = b;
 
-        String str = Prompt.String("계속 입력하시겠습니까?(y/N) ");
+        String str = Prompt.String("다음 신체정보를 등록하시겠습니까?(y/N) ");
         if (!str.equalsIgnoreCase("y")) {
+          System.out.println("신체정보가 등록되었습니다.");
           System.out.println();
           break;
         }
