@@ -18,6 +18,7 @@ public class App {
       System.out.println("/식단 조회");
 
       String command = Prompt.String("명령> ");
+      System.out.println();
 
       switch (command) {
 

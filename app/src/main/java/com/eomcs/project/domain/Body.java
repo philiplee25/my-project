@@ -7,6 +7,9 @@ public class Body {
   public int status;
   public double heights;
   public double weights;
+  public double bmis;
   public String names;
   public Date registeredDates;
 }
+
+

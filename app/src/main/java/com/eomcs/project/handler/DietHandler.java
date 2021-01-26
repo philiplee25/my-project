@@ -18,14 +18,14 @@ public class DietHandler {
     while (true) {
       System.out.println("[식단 등록]");
 
-      d.no = Prompt.Int("번호? ");
+      d.no = Prompt.Int("-번호? ");
 
-      System.out.print("0.아침 1.점심 2.저녁 3. 간식\n");
+      System.out.print("-0.아침 1.점심 2.저녁 3.간식\n");
       d.status = Prompt.Int("> ");
 
       d.name = "";
       while (true) {
-        String food = Prompt.String("먹은 음식?(완료: 빈 문자열) ");
+        String food = Prompt.String("-먹은 음식?(완료: 빈 문자열) ");
         if (food.length() == 0) {
           break;
         } else if (!d.name.isEmpty()) {
@@ -36,7 +36,7 @@ public class DietHandler {
 
       d.registerDate = new Date(System.currentTimeMillis());
 
-      System.out.println("식단이 저장되었습니다.");
+      System.out.println("=====식단이 저장되었습니다.=====");
 
       diet[size++] = d;
       System.out.println();
@@ -57,7 +57,7 @@ public class DietHandler {
 
       String stateLabel = null;
 
-      switch(d.status) {
+      switch (d.status) {
         case 0:
           stateLabel = "아침";
           break;
@@ -70,7 +70,7 @@ public class DietHandler {
         default:
           stateLabel = "간식";
       }
-      System.out.printf("[%s]\n%d. %s\n",d.registerDate, d.no, stateLabel);
+      System.out.printf("[%s]\n%d. %s\n", d.registerDate, d.no, stateLabel);
       System.out.printf("식단: %s\n", d.name);
     }
 
