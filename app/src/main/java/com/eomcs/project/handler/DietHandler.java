@@ -4,6 +4,12 @@ import java.sql.Date;
 import com.eomcs.project.domain.Diet;
 import com.eomcs.utility.Prompt;
 
+
+
+
+//칼로리 직접 써넣기
+
+
 public class DietHandler {
 
   static final int LENGTH = 10;
@@ -11,7 +17,7 @@ public class DietHandler {
   static int size = 0;
 
 
-  public static void add() {
+  public void add() {
 
     Diet d = new Diet();
 
@@ -45,7 +51,7 @@ public class DietHandler {
   }
 
 
-  public static void list() {
+  public void list() {
 
     System.out.println("[식단 조회]");
 

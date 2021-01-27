@@ -6,12 +6,14 @@ import com.eomcs.utility.Prompt;
 public class BodyHandler {
 
   static final int LENGTH = 100;
+
   static Body[] bodys = new Body[LENGTH];
+
   static int size = 0;
   static int count = 0;
 
 
-  public static void add() {
+  public void add() {
 
     System.out.println("[신체정보 등록]");
 
@@ -50,7 +52,7 @@ public class BodyHandler {
   }
 
 
-  public static void list() {
+  public void list() {
 
     System.out.println("[신체정보 조회]");
 
@@ -63,11 +65,87 @@ public class BodyHandler {
   }
 
 
-  public static double bmi(double h, double w) {
+  static double bmi(double h, double w) {
     double height = h / 100;
     double bmi = w / height / height;
     return bmi;
   }
+
+
+  public void detail() {
+    System.out.println("[신체정보 상세보기]");
+
+    int no = Prompt.Int("-번호? ");
+
+    for(int i = 0; i < this.size; i++) {
+      Body body = this.bodys[i];
+      if (body.nos == no) {
+        System.out.printf("%d.이름: %s\n",body.nos, body.names);
+        System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n",body.heights, body.weights);
+        System.out.printf("  BMI지수: %.2f\n",body.bmis);
+        System.out.printf("  날짜: %s\n",body.registeredDates);
+        return;
+      }
+    }
+
+    System.out.println("해당 번호의 신체정보가 없습니다.");
+  }
+
+
+  public void update() {
+    System.out.println("[신체정보 변경]");
+
+    int no = Prompt.Int("번호? ");
+
+    Body body = findByNo(no);
+    if (body == null) {
+      System.out.println("해당 번호의 신체정보가 없습니다.");
+      return;
+    }
+
+    String names = Prompt.String(String.format("-이름(%s)? ", body.names));
+
+  }
+
+  int indexOf(int bodyNo) {
+    for (int i = 0; i < this.size; i++) {
+      Body body = this.bodys[i];
+      if(body.nos == bodyNo) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  Body findByNo(int bodyNo) {
+    int i = indexOf(bodyNo);
+    if(i == -1)
+      return null;
+    else
+      return this.bodys[i];
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

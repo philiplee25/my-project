@@ -9,6 +9,10 @@ public class App {
 
   public static void main(String[] args) {
 
+    BodyHandler bodyList = new BodyHandler();
+    ExerciseHandler exerciseList = new ExerciseHandler();
+    DietHandler dietList = new DietHandler();
+
     loop: while (true) {
       System.out.println("/신체정보 등록");
       System.out.println("/신체정보 조회");
@@ -23,32 +27,40 @@ public class App {
       switch (command) {
 
         case "/신체정보 등록":
-          BodyHandler.add();
+          bodyList.add();
           break;
 
         case "/신체정보 조회":
-          BodyHandler.list();
+          bodyList.list();
           break;
 
-        case "/운동 추가하기":
-          ExerciseHandler.add();
+        case "/신체정보 상세조회":
+          bodyList.detail();
           break;
 
-        case "/운동 조회하기":
-          ExerciseHandler.list();
+        case "/신체정보 변경":
+          bodyList.update();
           break;
 
-        case "/식사 등록":
-          DietHandler.add();
+        case "/운동 추가":
+          exerciseList.add();
           break;
 
-        case "/식사 조회":
-          DietHandler.list();
+        case "/운동 조회":
+          exerciseList.list();
+          break;
+
+        case "/식단 기록":
+          dietList.add();
+          break;
+
+        case "/식단 조회":
+          dietList.list();
           break;
 
         case "quit":
         case "exit":
-          System.out.println("안녕!");
+          System.out.println("종료합니다.");
           break loop;
 
         default:

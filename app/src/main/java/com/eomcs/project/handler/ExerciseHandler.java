@@ -14,7 +14,7 @@ public class ExerciseHandler {
 
 
 
-  public static void add() {
+  public void add() {
 
     System.out.println("[운동 추가하기]");
 
@@ -63,7 +63,7 @@ public class ExerciseHandler {
   }
 
 
-  public static void list() {
+  public void list() {
 
     System.out.println("[운동기록 조회]");
 
