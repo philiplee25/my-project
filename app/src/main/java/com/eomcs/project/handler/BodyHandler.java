@@ -109,6 +109,7 @@ public class BodyHandler {
     String input = Prompt.String("정말 변경하시겠습니까?(y/N) ");
 
     if (input.equalsIgnoreCase("Y")) {
+      b.names = name;
       b.heights = height;
       b.weights = weight;
       System.out.println("신체정보를 변경하였습니다.");
