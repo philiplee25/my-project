@@ -58,8 +58,7 @@ public class BodyHandler {
 
     for (int i = 0; i < size; i++) {
       Body b = bodys[i];
-      System.out.printf("%d.이름 : %s\n  %.2fcm  %.2fkg\n  BMI지수: %.2f\n  %s\n", b.nos, b.names,
-          b.heights, b.weights, b.bmis, b.registeredDates);
+      System.out.printf("%d.이름 : %s\n  %s\n", b.nos, b.names, b.registeredDates);
     }
     System.out.println();
   }
@@ -77,13 +76,13 @@ public class BodyHandler {
 
     int no = Prompt.Int("-번호? ");
 
-    for(int i = 0; i < this.size; i++) {
-      Body body = this.bodys[i];
-      if (body.nos == no) {
-        System.out.printf("%d.이름: %s\n",body.nos, body.names);
-        System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n",body.heights, body.weights);
-        System.out.printf("  BMI지수: %.2f\n",body.bmis);
-        System.out.printf("  날짜: %s\n",body.registeredDates);
+    for (int i = 0; i < this.size; i++) {
+      Body b = this.bodys[i];
+      if (b.nos == no) {
+        System.out.printf("%d.이름: %s\n", b.nos, b.names);
+        System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n", b.heights, b.weights);
+        System.out.printf("  BMI지수: %.2f\n", b.bmis);
+        System.out.printf("  날짜: %s\n", b.registeredDates);
         return;
       }
     }
@@ -110,7 +109,7 @@ public class BodyHandler {
   int indexOf(int bodyNo) {
     for (int i = 0; i < this.size; i++) {
       Body body = this.bodys[i];
-      if(body.nos == bodyNo) {
+      if (body.nos == bodyNo) {
         return i;
       }
     }
@@ -119,33 +118,11 @@ public class BodyHandler {
 
   Body findByNo(int bodyNo) {
     int i = indexOf(bodyNo);
-    if(i == -1)
+    if (i == -1)
       return null;
     else
       return this.bodys[i];
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

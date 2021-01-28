@@ -6,8 +6,7 @@ import com.eomcs.utility.Prompt;
 
 
 
-
-//칼로리 직접 써넣기
+// 칼로리 직접 써넣기
 
 
 public class DietHandler {
@@ -78,6 +77,7 @@ public class DietHandler {
       }
       System.out.printf("[%s]\n%d. %s\n", d.registerDate, d.no, stateLabel);
       System.out.printf("식단: %s\n", d.name);
+      System.out.println();
     }
 
     System.out.println();

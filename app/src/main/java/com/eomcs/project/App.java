@@ -16,9 +16,10 @@ public class App {
     loop: while (true) {
       System.out.println("/신체정보 등록");
       System.out.println("/신체정보 조회");
+      System.out.println("/신체정보 상세조회");
       System.out.println("/운동기록 추가");
       System.out.println("/운동기록 조회");
-      System.out.println("/식단 등록");
+      System.out.println("/식단 기록");
       System.out.println("/식단 조회");
 
       String command = Prompt.String("명령> ");
@@ -42,11 +43,11 @@ public class App {
           bodyList.update();
           break;
 
-        case "/운동 추가":
+        case "/운동기록 추가":
           exerciseList.add();
           break;
 
-        case "/운동 조회":
+        case "/운동기록 조회":
           exerciseList.list();
           break;
 
