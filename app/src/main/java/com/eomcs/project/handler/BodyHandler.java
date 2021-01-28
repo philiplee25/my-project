@@ -54,7 +54,7 @@ public class BodyHandler {
 
   public void list() {
 
-    System.out.println("[신체정보 조회]");
+    System.out.println("[신체정보 목록조회]");
 
     for (int i = 0; i < size; i++) {
       Body b = bodys[i];

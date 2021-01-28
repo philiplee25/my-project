@@ -15,7 +15,7 @@ public class App {
 
     loop: while (true) {
       System.out.println("/신체정보 등록");
-      System.out.println("/신체정보 조회");
+      System.out.println("/신체정보 목록조회");
       System.out.println("/신체정보 상세조회");
       System.out.println("/운동기록 추가");
       System.out.println("/운동기록 조회");
@@ -31,7 +31,7 @@ public class App {
           bodyList.add();
           break;
 
-        case "/신체정보 조회":
+        case "/신체정보 목록조회":
           bodyList.list();
           break;
 
