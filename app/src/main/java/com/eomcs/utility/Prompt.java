@@ -14,11 +14,16 @@ public class Prompt {
 
   public static String String2(String title) { // println
     System.out.println(title);
+    System.out.print("> ");
     return keyboardScan.nextLine();
   }
 
   public static int Int(String title) {
     return Integer.parseInt(String(title));
+  }
+
+  public static int Int2(String title) {
+    return Integer.parseInt(String2(title));
   }
 
   public static double Double(String title) {
@@ -27,6 +32,12 @@ public class Prompt {
 
   public static Date Date(String title) {
     return Date.valueOf(String(title));
+  }
+
+  public static double doubleUpdate(String title, double d) {
+    System.out.printf(title, d);
+    return Double.parseDouble(keyboardScan.nextLine());
+
   }
 
   public static void close() {
