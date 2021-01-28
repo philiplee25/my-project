@@ -1,5 +1,6 @@
 package com.eomcs.project.handler;
 
+import java.sql.Date;
 import com.eomcs.project.domain.Body;
 import com.eomcs.utility.Prompt;
 
@@ -31,7 +32,7 @@ public class BodyHandler {
 
         b.bmis = bmi(b.heights, b.weights);
 
-        b.registeredDates = new java.sql.Date(System.currentTimeMillis());
+        b.registeredDates = new Date(System.currentTimeMillis());
 
         bodys[size++] = b;
 
@@ -56,13 +57,14 @@ public class BodyHandler {
 
     System.out.println("[신체정보 목록조회]");
 
-    for (int i = 0; i < size; i++) {
-      Body b = bodys[i];
-      System.out.printf("%d.이름 : %s\n  %s\n", b.nos, b.names, b.registeredDates);
-      System.out.println();
-    }
-
     loop: while (true) {
+
+      for (int i = 0; i < size; i++) {
+        Body b = bodys[i];
+        System.out.printf("%d.이름 : %s\n  %s\n", b.nos, b.names, b.registeredDates);
+        System.out.println();
+      }
+      
       int choice1 = Prompt.Int2("1. 상세조회    0. 뒤로가기");
       switch (choice1) {
         case 1:
@@ -146,7 +148,6 @@ public class BodyHandler {
       System.out.println("신체정보 삭제를 취소하였습니다.");
       System.out.println();
     }
-
 
   }
 
