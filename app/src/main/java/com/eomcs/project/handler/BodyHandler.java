@@ -61,25 +61,32 @@ public class BodyHandler {
       System.out.printf("%d.이름 : %s\n  %s\n", b.nos, b.names, b.registeredDates);
       System.out.println();
     }
-    int choice1 = Prompt.Int2("1. 상세조회    0. 뒤로가기");
-    switch (choice1) {
-      case 1:
-        System.out.println("[신체정보 상세조회]");
 
-        int no = Prompt.Int("-번호? ");
+    loop: while (true) {
+      int choice1 = Prompt.Int2("1. 상세조회    0. 뒤로가기");
+      switch (choice1) {
+        case 1:
+          System.out.println("[신체정보 상세조회]");
 
-        for (int i = 0; i < this.size; i++) {
-          Body b = this.bodys[i];
-          if (b.nos == no) {
-            System.out.printf("%d.이름: %s\n", b.nos, b.names);
-            System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n", b.heights, b.weights);
-            System.out.printf("  BMI지수: %.2f\n", b.bmis);
-            System.out.printf("  날짜: %s\n", b.registeredDates);
+          int no = Prompt.Int("-번호? ");
+
+          for (int i = 0; i < this.size; i++) {
+            Body b = this.bodys[i];
+            if (b.nos == no) {
+              System.out.printf("%d.이름: %s\n", b.nos, b.names);
+              System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n", b.heights, b.weights);
+              System.out.printf("  BMI지수: %.2f\n", b.bmis);
+              System.out.printf("  날짜: %s\n", b.registeredDates);
+            }
             return;
           }
-        }
-        System.out.println("해당 번호의 신체정보가 없습니다.");
-        break;
+          System.out.println("해당 번호의 신체정보가 없습니다.");
+        case 0:
+          break loop;
+        default:
+          System.out.println("잘못 입력하셨습니다. 다시 입력하세요.");
+          continue;
+      }
     }
   }
 
