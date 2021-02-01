@@ -8,7 +8,7 @@ public class BodyHandler {
 
   static final int LENGTH = 100;
 
-  static Body[] bodys = new Body[LENGTH];
+  static Body[] body = new Body[LENGTH];
 
   static int size = 0;
   static int count = 0;
@@ -34,7 +34,7 @@ public class BodyHandler {
 
         b.registeredDates = new Date(System.currentTimeMillis());
 
-        bodys[size++] = b;
+        body[size++] = b;
 
         String str = Prompt.String("-다음 신체정보를 등록하시겠습니까?(y/N) ");
         if (!str.equalsIgnoreCase("y")) {
@@ -60,11 +60,11 @@ public class BodyHandler {
     loop: while (true) {
 
       for (int i = 0; i < size; i++) {
-        Body b = bodys[i];
+        Body b = body[i];
         System.out.printf("%d.이름 : %s\n  %s\n", b.nos, b.names, b.registeredDates);
         System.out.println();
       }
-      
+
       int choice1 = Prompt.Int2("1. 상세조회    0. 뒤로가기");
       switch (choice1) {
         case 1:
@@ -73,7 +73,7 @@ public class BodyHandler {
           int no = Prompt.Int("-번호? ");
 
           for (int i = 0; i < this.size; i++) {
-            Body b = this.bodys[i];
+            Body b = this.body[i];
             if (b.nos == no) {
               System.out.printf("%d.이름: %s\n", b.nos, b.names);
               System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n", b.heights, b.weights);
@@ -137,9 +137,9 @@ public class BodyHandler {
 
     if (input.equalsIgnoreCase("Y")) {
       for (int x = i + 1; x < this.size; x++) {
-        this.bodys[x - 1] = this.bodys[x];
+        this.body[x - 1] = this.body[x];
       }
-      bodys[--this.size] = null;
+      body[--this.size] = null;
 
       System.out.println("신체정보를 삭제하였습니다.");
       System.out.println();
@@ -153,7 +153,7 @@ public class BodyHandler {
 
   int indexOf(int bodyNo) {
     for (int i = 0; i < this.size; i++) {
-      Body b = this.bodys[i];
+      Body b = this.body[i];
       if (b.nos == bodyNo) {
         return i;
       }
@@ -166,7 +166,7 @@ public class BodyHandler {
     if (i == -1)
       return null;
     else
-      return this.bodys[i];
+      return this.body[i];
   }
 
 

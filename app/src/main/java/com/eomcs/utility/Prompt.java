@@ -30,14 +30,23 @@ public class Prompt {
     return Double.parseDouble(String(title));
   }
 
-  public static Date Date(String title) {
+  public static Date date(String title) {
     return Date.valueOf(String(title));
   }
 
   public static double doubleUpdate(String title, double d) {
     System.out.printf(title, d);
     return Double.parseDouble(keyboardScan.nextLine());
+  }
 
+  public static int intUpdate(String title, int i) {
+    System.out.printf(title, i);
+    return Integer.parseInt(keyboardScan.nextLine());
+  }
+
+  public static int intUpdate2(String title, int i, String string) {
+    System.out.printf(title, i, string);
+    return Integer.parseInt(keyboardScan.nextLine());
   }
 
   public static void close() {

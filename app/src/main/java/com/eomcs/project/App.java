@@ -52,12 +52,24 @@ public class App {
           exerciseList.list();
           break;
 
+        case "/운동기록 수정":
+          exerciseList.update();
+          break;
+
         case "/식단 기록":
           dietList.add();
           break;
 
         case "/식단 조회":
           dietList.list();
+          break;
+
+        case "/식단 수정":
+          dietList.update();
+          break;
+
+        case "/식단 삭제":
+          dietList.delete();
           break;
 
         case "quit":
