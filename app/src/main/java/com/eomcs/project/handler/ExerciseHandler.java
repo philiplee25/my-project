@@ -18,36 +18,52 @@ public class ExerciseHandler {
 
     Exercise r = new Exercise();
 
-    loop: while (true) {
-      r.nos = Prompt.inputInt("-번호? ");
+    r.nos = Prompt.inputInt("-번호? ");
 
-      String rname = Prompt.inputString("-루틴 이름?(등록취소: 빈 문자열) ");
+    String rname = Prompt.inputString("-루틴 이름?(등록취소: 빈 문자열) ");
+    System.out.println();
+
+    if (rname.length() == 0) {
+      System.out.println("=====루틴 등록을 취소합니다.=====");
+      return;
+    } else {
+      r.names = rname;
+    }
+
+
+    String ename = Prompt.inputString("-운동 이름?(완료: 빈 문자열) ");
+    if (ename.length() == 0) {
+      System.out.println("=====운동 등록을 종료합니다.=====");
+      System.out.println();
+    } else {
+      r.weights = Prompt.inputInt("--무게(kg)? ");
+      r.counts = Prompt.inputInt("--횟수? ");
+      r.sets = Prompt.inputInt("--세트? ");
       System.out.println();
 
-      if (rname.length() == 0) {
-        System.out.println("=====루틴 등록을 취소합니다.=====");
-        return;
-      } else {
-        r.names = rname;
-      }
-
-
-      String ename = Prompt.inputString("-운동 이름?(완료: 빈 문자열) ");
+      String ename2 = Prompt.inputString("-운동 이름?(완료: 빈 문자열) ");
       if (ename.length() == 0) {
         System.out.println("=====운동 등록을 종료합니다.=====");
         System.out.println();
-        break loop;
       } else {
-        r.weights = Prompt.inputInt("--무게(kg)? ");
-        r.counts = Prompt.inputInt("--횟수? ");
-        r.sets = Prompt.inputInt("--세트? ");
+        r.weights2 = Prompt.inputInt("--무게(kg)? ");
+        r.counts2 = Prompt.inputInt("--횟수? ");
+        r.sets2 = Prompt.inputInt("--세트? ");
         System.out.println();
-      }
-      routine[size++] = r;
 
+        String ename3 = Prompt.inputString("-운동 이름?(완료: 빈 문자열) ");
+        if (ename.length() == 0) {
+          System.out.println("=====운동 등록을 종료합니다.=====");
+          System.out.println();
+        } else {
+          r.weights3 = Prompt.inputInt("--무게(kg)? ");
+          r.counts3 = Prompt.inputInt("--횟수? ");
+          r.sets3 = Prompt.inputInt("--세트? ");
+          System.out.println();
+        }
+      }
     }
   }
-
 
   public void list() {
 
