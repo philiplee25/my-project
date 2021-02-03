@@ -23,7 +23,7 @@ public class App {
       System.out.println("/식단 기록");
       System.out.println("/식단 조회");
 
-      String command = Prompt.String("명령> ");
+      String command = Prompt.inputString("명령> ");
       System.out.println();
 
       switch (command) {
@@ -34,6 +34,10 @@ public class App {
 
         case "/신체정보 목록조회":
           bodyList.list();
+          break;
+
+        case "/신체정보 상세조회":
+          bodyList.detail();
           break;
 
         case "/신체정보 변경":

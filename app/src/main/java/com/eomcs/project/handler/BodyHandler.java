@@ -2,54 +2,29 @@ package com.eomcs.project.handler;
 
 import java.sql.Date;
 import com.eomcs.project.domain.Body;
+import com.eomcs.utility.List;
 import com.eomcs.utility.Prompt;
 
 public class BodyHandler {
 
-  static final int LENGTH = 100;
-
-  static Body[] body = new Body[LENGTH];
-
-  static int size = 0;
-  static int count = 0;
-
+  private List bodyList = new List();
 
   public void add() {
-
     System.out.println("[신체정보 등록]");
 
-    while (true) {
-      if (size < LENGTH) {
-        Body b = new Body();
+    Body b = new Body();
 
-        b.nos = Prompt.Int("-번호? ");
+    b.setNos(Prompt.inputInt("-번호? "));
+    b.setNames(Prompt.inputString("-이름? "));
+    b.setHeights(Prompt.inputDouble("-키? "));
+    b.setWeights(Prompt.inputDouble("-몸무게? "));
+    b.setBmis(Body.bmi(b.getHeights(), b.getWeights()));
+    b.setRegisteredDates(new Date(System.currentTimeMillis()));
 
-        b.names = Prompt.String("-이름? ");
+    bodyList.add(b);
 
-        b.heights = Prompt.Double("-키? ");
+    System.out.println("신체정보를 등록하였습니다.");
 
-        b.weights = Prompt.Double("-몸무게? ");
-
-        b.bmis = bmi(b.heights, b.weights);
-
-        b.registeredDates = new Date(System.currentTimeMillis());
-
-        body[size++] = b;
-
-        String str = Prompt.String("-다음 신체정보를 등록하시겠습니까?(y/N) ");
-        if (!str.equalsIgnoreCase("y")) {
-          System.out.println("=====신체정보가 등록되었습니다.=====");
-          System.out.println();
-          break;
-        }
-        count++;
-        System.out.println();
-
-      } else {
-        System.out.println("=====저장할 수 있는 신체정보가 꽉 찼습니다.=====");
-        break;
-      }
-    }
   }
 
 
@@ -57,46 +32,39 @@ public class BodyHandler {
 
     System.out.println("[신체정보 목록조회]");
 
-    loop: while (true) {
+    Object[] list = bodyList.toArray();
 
-      for (int i = 0; i < size; i++) {
-        Body b = body[i];
-        System.out.printf("%d.이름 : %s\n  %s\n", b.nos, b.names, b.registeredDates);
-        System.out.println();
-      }
-
-      int choice1 = Prompt.Int2("1. 상세조회    0. 뒤로가기");
-      switch (choice1) {
-        case 1:
-          System.out.println("[신체정보 상세조회]");
-
-          int no = Prompt.Int("-번호? ");
-
-          for (int i = 0; i < this.size; i++) {
-            Body b = this.body[i];
-            if (b.nos == no) {
-              System.out.printf("%d.이름: %s\n", b.nos, b.names);
-              System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n", b.heights, b.weights);
-              System.out.printf("  BMI지수: %.2f\n", b.bmis);
-              System.out.printf("  날짜: %s\n", b.registeredDates);
-            }
-            return;
-          }
-          System.out.println("해당 번호의 신체정보가 없습니다.");
-        case 0:
-          break loop;
-        default:
-          System.out.println("잘못 입력하셨습니다. 다시 입력하세요.");
-          continue;
-      }
+    for (Object obj : list) {
+      Body b = (Body) obj;
+      System.out.printf("%d.이름 : %s\n  %s\n", b.getNos(), b.getNames(), b.getRegisteredDates());
+      System.out.println();
     }
+  }
+
+
+  public void detail() {
+    System.out.println("[게시글 상세보기]");
+
+    int no = Prompt.inputInt("번호? ");
+
+    Body b = findByNo(no);
+    if (b == null) {
+      System.out.println("해당 번호의 게시글이 없습니다.");
+      return;
+    }
+
+    System.out.printf("%d.이름: %s\n", b.getNos(), b.getNames());
+    System.out.printf("  키: %.2fcm\n  몸무게: %.2fkg\n", b.getHeights(), b.getWeights());
+    System.out.printf("  BMI지수: %.2f\n", b.getBmis());
+    System.out.printf("  날짜: %s\n", b.getRegisteredDates());
+
   }
 
 
   public void update() {
     System.out.println("[신체정보 변경]");
 
-    int no = Prompt.Int("번호? ");
+    int no = Prompt.inputInt("번호? ");
 
     Body b = findByNo(no);
     if (b == null) {
@@ -104,16 +72,16 @@ public class BodyHandler {
       return;
     }
 
-    String name = Prompt.String(String.format("-이름(%s)? ", b.names));
-    double height = Prompt.doubleUpdate("-키(%.2f)? ", b.heights);
-    double weight = Prompt.doubleUpdate("-몸무게(%.2f)? ", b.weights);
+    String name = Prompt.inputString(String.format("-이름(%s)? ", b.getNames()));
+    double height = Prompt.doubleUpdate("-키(%.2f)? ", b.getHeights());
+    double weight = Prompt.doubleUpdate("-몸무게(%.2f)? ", b.getWeights());
 
-    String input = Prompt.String("정말 변경하시겠습니까?(y/N) ");
+    String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
 
     if (input.equalsIgnoreCase("Y")) {
-      b.names = name;
-      b.heights = height;
-      b.weights = weight;
+      b.setNames(name);
+      b.setHeights(height);
+      b.setWeights(weight);
       System.out.println("신체정보를 변경하였습니다.");
 
     } else {
@@ -125,56 +93,38 @@ public class BodyHandler {
   public void delete() {
     System.out.println("[신체정보 삭제]");
 
-    int no = Prompt.Int("번호? ");
+    int no = Prompt.inputInt("번호? ");
 
-    int i = indexOf(no);
-    if (i == -1) {
+    Body body = findByNo(no);
+    if (body == null) {
       System.out.println("해당 번호의 신체정보가 없습니다.");
       return;
     }
 
-    String input = Prompt.String("정말 삭제하시겠습니까?(y/N) ");
+    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
 
     if (input.equalsIgnoreCase("Y")) {
-      for (int x = i + 1; x < this.size; x++) {
-        this.body[x - 1] = this.body[x];
-      }
-      body[--this.size] = null;
-
+      bodyList.delete(no);
       System.out.println("신체정보를 삭제하였습니다.");
-      System.out.println();
-
     } else {
       System.out.println("신체정보 삭제를 취소하였습니다.");
-      System.out.println();
     }
-
   }
 
-  int indexOf(int bodyNo) {
-    for (int i = 0; i < this.size; i++) {
-      Body b = this.body[i];
-      if (b.nos == bodyNo) {
-        return i;
-      }
-    }
-    return -1;
-  }
 
   Body findByNo(int bodyNo) {
-    int i = indexOf(bodyNo);
-    if (i == -1)
-      return null;
-    else
-      return this.body[i];
+    Object[] list = bodyList.toArray();
+    for (Object obj : list) {
+      Body b = (Body) obj;
+      if (b.getNos() == bodyNo) {
+        return b;
+      }
+    }
+    return null;
   }
 
 
-  double bmi(double h, double w) {
-    double height = h / 100;
-    double bmi = w / height / height;
-    return bmi;
-  }
+
 }
 
 

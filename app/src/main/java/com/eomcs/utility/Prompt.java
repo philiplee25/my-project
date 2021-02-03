@@ -7,31 +7,31 @@ public class Prompt {
 
   static Scanner keyboardScan = new Scanner(System.in);
 
-  public static String String(String title) { // print
+  public static String inputString(String title) { // print
     System.out.print(title);
     return keyboardScan.nextLine();
   }
 
-  public static String String2(String title) { // println
+  public static String inputString2(String title) { // println
     System.out.println(title);
     System.out.print("> ");
     return keyboardScan.nextLine();
   }
 
-  public static int Int(String title) {
-    return Integer.parseInt(String(title));
+  public static int inputInt(String title) {
+    return Integer.parseInt(inputString(title));
   }
 
-  public static int Int2(String title) {
-    return Integer.parseInt(String2(title));
+  public static int inputInt2(String title) {
+    return Integer.parseInt(inputString2(title));
   }
 
-  public static double Double(String title) {
-    return Double.parseDouble(String(title));
+  public static double inputDouble(String title) {
+    return Double.parseDouble(inputString(title));
   }
 
   public static Date date(String title) {
-    return Date.valueOf(String(title));
+    return Date.valueOf(inputString(title));
   }
 
   public static double doubleUpdate(String title, double d) {

@@ -2,50 +2,35 @@ package com.eomcs.project.handler;
 
 import java.sql.Date;
 import com.eomcs.project.domain.Diet;
+import com.eomcs.utility.List;
 import com.eomcs.utility.Prompt;
-
-
-
-// 칼로리 직접 써넣기
 
 
 public class DietHandler {
 
-  static final int LENGTH = 10;
-  static Diet[] diet = new Diet[LENGTH];
-  static int size = 0;
-
+  private List dietList = new List();
 
   public void add() {
+    System.out.println("[식단 기록]");
 
     Diet d = new Diet();
 
+    d.no = Prompt.inputInt("-번호? ");
+    d.status = Prompt.inputInt2("-0.아침 1.점심 2.저녁 3.간식");
+    d.name = "";
     while (true) {
-      System.out.println("[식단 기록]");
-
-      d.no = Prompt.Int("-번호? ");
-
-      d.status = Prompt.Int2("-0.아침 1.점심 2.저녁 3.간식");
-
-      d.name = "";
-      while (true) {
-        String food = Prompt.String("-먹은 음식?(완료: 빈 문자열) ");
-        if (food.length() == 0) {
-          break;
-        } else if (!d.name.isEmpty()) {
-          d.name += ", ";
-        }
-        d.name += food;
+      String food = Prompt.inputString("-먹은 음식?(완료: 빈 문자열) ");
+      if (food.length() == 0) {
+        break;
+      } else if (!d.name.isEmpty()) {
+        d.name += ", ";
       }
-
-      d.registerDate = new Date(System.currentTimeMillis());
-
-      System.out.println("=====식단이 저장되었습니다.=====");
-
-      diet[size++] = d;
-      System.out.println();
-      break;
+      d.name += food;
     }
+    d.registerDate = new Date(System.currentTimeMillis());
+
+    dietList.add(d);
+    System.out.println("=====식단이 저장되었습니다.=====");
   }
 
 
@@ -53,9 +38,11 @@ public class DietHandler {
 
     System.out.println("[식단 조회]");
 
-    for (int i = 0; i < size; i++) {
+    Object[] list = dietList.toArray();
 
-      Diet d = diet[i];
+    for (Object obj : list) {
+
+      Diet d = (Diet) obj;
 
       String stateLabel = null;
 
@@ -84,7 +71,7 @@ public class DietHandler {
   public void update() {
     System.out.println("[식단 변경]");
 
-    int no = Prompt.Int("번호? ");
+    int no = Prompt.inputInt("번호? ");
     Diet d = findByNo(no);
     if (d == null) {
       System.out.println("해당 번호의 식단이 없습니다.");
@@ -112,7 +99,7 @@ public class DietHandler {
 
     String name = "";
     while (true) {
-      String food = Prompt.String("-먹은 음식?(완료: 빈문자열) ");
+      String food = Prompt.inputString("-먹은 음식?(완료: 빈문자열) ");
       if (food.length() == 0) {
         break;
       } else if (!name.isEmpty()) {
@@ -121,12 +108,12 @@ public class DietHandler {
       name += food;
     }
 
-    String input = Prompt.String("정말 변경하시겠습니까?(y/N) ");
+    String input = Prompt.inputString("정말 변경하시겠습니까?(y/N) ");
 
     if (input.equalsIgnoreCase("Y")) {
-      d.no = no;
-      d.status = status;
-      d.name = name;
+      d.setNo(no);
+      d.setStatus(status);
+      d.setName(name);
       System.out.println("식단을 변경하였습니다.");
 
     } else {
@@ -138,22 +125,18 @@ public class DietHandler {
   public void delete() {
     System.out.println("[식단 삭제]");
 
-    int no = Prompt.Int("번호? ");
+    int no = Prompt.inputInt("번호? ");
 
-    int i = indexOf(no);
-    if (i == -1) {
+    Diet diet = findByNo(no);
+    if (diet == null) {
       System.out.println("해당 번호의 식단이 없습니다.");
       return;
     }
 
-    String input = Prompt.String("정말 삭제하시겠습니까?(y/N) ");
+    String input = Prompt.inputString("정말 삭제하시겠습니까?(y/N) ");
 
     if (input.equalsIgnoreCase("Y")) {
-      for (int x = i + 1; x < this.size; x++) {
-        this.diet[x - 1] = this.diet[x];
-      }
-      diet[--this.size] = null;
-
+      dietList.delete(no);
       System.out.println("식단을 삭제하였습니다.");
       System.out.println();
 
@@ -165,23 +148,15 @@ public class DietHandler {
   }
 
 
-  int indexOf(int dietNo) {
-    for (int i = 0; i < size; i++) {
-      Diet d = diet[i];
-      if (d.no == dietNo) {
-        return i;
+  Diet findByNo(int dietNo) {
+    Object[] list = dietList.toArray();
+    for (Object obj : list) {
+      Diet d = (Diet) obj;
+      if (d.getNo() == dietNo) {
+        return d;
       }
     }
-    return -1;
-  }
-
-  Diet findByNo(int dietNo) {
-    int i = indexOf(dietNo);
-    if (i == -1) {
-      return null;
-    } else {
-      return diet[i];
-    }
+    return null;
   }
 }
 
